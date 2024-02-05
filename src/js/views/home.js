@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
+import { Demo } from "./demo.js";
 import { ContactCard } from "./ContactCard";
+
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -17,15 +19,13 @@ export const Home = () => {
 
   return (
     <div className="text-center mt-5">
-      <h1>Hello Rigo!</h1>
-      <p>
-        <img src={rigoImage} />
-      </p>
-      <a href="#" className="btn btn-success">
-        If you see this green button, bootstrap is working
-      </a>
-      {contacts.map((contact) => (
-        <ContactCard key={contact.key} {...contact} />
+      {contacts.map((contact, index) => (
+        <ContactCard
+          key={index}
+          contact={contact}
+          contacts={contacts}
+          setContacts={setContacts}
+        />
       ))}
     </div>
   );
