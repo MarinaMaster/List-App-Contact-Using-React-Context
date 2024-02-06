@@ -1,8 +1,13 @@
 // Demo.js
 import React, { useState } from "react";
 import "../../styles/demo.css";
+import { useNavigate } from "react-router-dom";
 
 export const Demo = () => {
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/");
+  };
   const [newContact, setNewContact] = useState({
     fullName: "",
     email: "",
@@ -17,12 +22,19 @@ export const Demo = () => {
   };
 
   const addContact = (contactData) => {
+    console.log(contactData.fullName);
     fetch("https://playground.4geeks.com/apis/fake/contact/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(contactData),
+      body: JSON.stringify({
+        full_name: contactData.fullName,
+        email: contactData.email,
+        address: contactData.address,
+        phone: contactData.phone,
+        agenda_slug: "marina_agenda",
+      }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -110,6 +122,7 @@ export const Demo = () => {
         <div className="form-group">
           <button type="submit">Save</button>
         </div>
+        <button onClick={goToHome}>Go Home</button>
       </form>
     </div>
   );

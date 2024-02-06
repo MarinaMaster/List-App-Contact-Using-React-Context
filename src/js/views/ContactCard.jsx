@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Modal } from "./Modal";
+import { useNavigate } from "react-router-dom";
 
 export const ContactCard = (props) => {
+  const navigate = useNavigate();
+  const goToDemo = () => {
+    navigate("/demo");
+  };
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -48,6 +53,9 @@ export const ContactCard = (props) => {
             />
           </div>
           <div className="col-2">
+            <span className="text-muted">
+              <h2>{props.contact.full_name}</h2>
+            </span>
             <br />
             <i className="fas fa-map-marker-alt text-muted mr-3" />
             <span className="text-muted">
@@ -62,7 +70,7 @@ export const ContactCard = (props) => {
           </div>
           <div className="col-8">
             <div className=" float-right">
-              <button className="btnEdit">
+              <button className="btnEdit" onClick={goToDemo}>
                 <i className="fas fa-pencil-alt mr-3" />
               </button>
               <button className="btnDelete" onClick={openModal}>

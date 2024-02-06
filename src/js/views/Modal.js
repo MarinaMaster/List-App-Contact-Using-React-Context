@@ -6,7 +6,7 @@ export const Modal = ({ isOpen, onClose, onConfirm, modalInfo }) => {
   return (
     <div className="modal">
       <div className="modalContent">
-        {modalInfo}
+        <h2>Are you sure?</h2>
         <button onClick={onClose}>Oh no!</button>
         <button onClick={onConfirm}>Yes baby!</button>
       </div>
